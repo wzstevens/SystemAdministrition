@@ -1,0 +1,240 @@
+case "$1" in -i)
+uname=`uname`
+ip='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$ip" ] ; then
+		if [ $INS = "fedora" ] ; then     
+			ip=`ifconfig -a | grep inet | awk '{print $2}'`
+			echo "$ip"
+		else
+			ip=`ifconfig -a | grep inet | awk  '{print $2}' | awk '{print substr($0,6,(length($0)-5))}'`
+			echo "$ip"
+		fi
+	else
+    	echo 'Unable to obtain ip'
+	fi
+else
+	ip=`ifconfig -a | grep inet | awk '{print $2}'`
+	echo "$ip"
+fi
+;;
+-m)
+uname=`uname`
+mac='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$mac" ] ; then
+    	if [ $INS = "fedora" ] ; then     
+			mac=`ifconfig -a | grep ether | awk '{print $2}'`
+			echo "$mac"
+		else
+			mac=`ifconfig |grep eth0|awk '{print $5}'`
+			echo "$mac"
+		fi
+	else
+    	echo 'Unable to obtain mac'
+	fi
+elif [ $uname = "NetBSD" ] ; then
+	mac=`ifconfig -a | grep address | awk '{print $2}'`
+	echo "$mac"
+else
+	mac=`ifconfig -a | grep ether | awk '{print $2}'`
+	echo "$mac"
+fi
+;;
+-n)
+uname=`uname`
+netmask=''
+INS=`whoami`
+if [ $uname = "Linux" ] ; then
+	if [ $INS = "fedora" ] ; then 
+		netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+		echo "$netmask"
+	else
+		netmask=`ifconfig -a | grep Mask | awk -F 'Mask:' '{print $2}'`
+		echo "$netmask"
+	fi
+else
+	netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+	echo "$netmask"
+fi
+;;
+-im|-mi)
+uname=`uname`
+ip='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$ip" ] ; then
+		if [ $INS = "fedora" ] ; then     
+			ip=`ifconfig -a | grep inet | awk '{print $2}'`
+			echo "$ip"
+		else
+			ip=`ifconfig -a | grep inet | awk  '{print $2}' | awk '{print substr($0,6,(length($0)-5))}'`
+			echo "$ip"
+		fi
+	else
+    	echo 'Unable to obtain ip'
+	fi
+else
+	ip=`ifconfig -a | grep inet | awk '{print $2}'`
+	echo "$ip"
+fi
+
+uname=`uname`
+mac='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$mac" ] ; then
+    	if [ $INS = "fedora" ] ; then     
+			mac=`ifconfig -a | grep ether | awk '{print $2}'`
+			echo "$mac"
+		else
+			mac=`ifconfig |grep eth0|awk '{print $5}'`
+			echo "$mac"
+		fi
+	else
+    	echo 'Unable to obtain mac'
+	fi
+elif [ $uname = "NetBSD" ] ; then
+	mac=`ifconfig -a | grep address | awk '{print $2}'`
+	echo "$mac"
+else
+	mac=`ifconfig -a | grep ether | awk '{print $2}'`
+	echo "$mac"
+fi
+;;
+-in|-ni)
+uname=`uname`
+ip='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$ip" ] ; then
+		if [ $INS = "fedora" ] ; then     
+			ip=`ifconfig -a | grep inet | awk '{print $2}'`
+			echo "$ip"
+		else
+			ip=`ifconfig -a | grep inet | awk  '{print $2}' | awk '{print substr($0,6,(length($0)-5))}'`
+			echo "$ip"
+		fi
+	else
+    	echo 'Unable to obtain ip'
+	fi
+else
+	ip=`ifconfig -a | grep inet | awk '{print $2}'`
+	echo "$ip"
+fi
+uname=`uname`
+netmask=''
+INS=`whoami`
+if [ $uname = "Linux" ] ; then
+	if [ $INS = "fedora" ] ; then 
+		netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+		echo "$netmask"
+	else
+		netmask=`ifconfig -a | grep Mask | awk -F 'Mask:' '{print $2}'`
+		echo "$netmask"
+	fi
+else
+	netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+	echo "$netmask"
+fi
+;;
+-nm|-mn)
+uname=`uname`
+mac='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$mac" ] ; then
+    	if [ $INS = "fedora" ] ; then     
+			mac=`ifconfig -a | grep ether | awk '{print $2}'`
+			echo "$mac"
+		else
+			mac=`ifconfig |grep eth0|awk '{print $5}'`
+			echo "$mac"
+		fi
+	else
+    	echo 'Unable to obtain mac'
+	fi
+elif [ $uname = "NetBSD" ] ; then
+	mac=`ifconfig -a | grep address | awk '{print $2}'`
+	echo "$mac"
+else
+	mac=`ifconfig -a | grep ether | awk '{print $2}'`
+	echo "$mac"
+fi
+uname=`uname`
+netmask=''
+INS=`whoami`
+if [ $uname = "Linux" ] ; then
+	if [ $INS = "fedora" ] ; then 
+		netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+		echo "$netmask"
+	else
+		netmask=`ifconfig -a | grep Mask | awk -F 'Mask:' '{print $2}'`
+		echo "$netmask"
+	fi
+else
+	netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+	echo "$netmask"
+fi
+;;
+-inm|-imn|-nim|-min|-nmi|-mni)
+uname=`uname`
+ip='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$ip" ] ; then
+		if [ $INS = "fedora" ] ; then     
+			ip=`ifconfig -a | grep inet | awk '{print $2}'`
+			echo "$ip"
+		else
+			ip=`ifconfig -a | grep inet | awk  '{print $2}' | awk '{print substr($0,6,(length($0)-5))}'`
+			echo "$ip"
+		fi
+	else
+    	echo 'Unable to obtain ip'
+	fi
+else
+	ip=`ifconfig -a | grep inet | awk '{print $2}'`
+	echo "$ip"
+fi
+uname=`uname`
+mac='0'
+if [ $uname = "Linux" ] ; then
+	INS=`whoami`
+	if [ -n "$mac" ] ; then
+    	if [ $INS = "fedora" ] ; then     
+			mac=`ifconfig -a | grep ether | awk '{print $2}'`
+			echo "$mac"
+		else
+			mac=`ifconfig |grep eth0|awk '{print $5}'`
+			echo "$mac"
+		fi
+	else
+    	echo 'Unable to obtain mac'
+	fi
+elif [ $uname = "NetBSD" ] ; then
+	mac=`ifconfig -a | grep address | awk '{print $2}'`
+	echo "$mac"
+else
+	mac=`ifconfig -a | grep ether | awk '{print $2}'`
+	echo "$mac"
+fi
+uname=`uname`
+netmask=''
+INS=`whoami`
+if [ $uname = "Linux" ] ; then
+	if [ $INS = "fedora" ] ; then 
+		netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+		echo "$netmask"
+	else
+		netmask=`ifconfig -a | grep Mask | awk -F 'Mask:' '{print $2}'`
+		echo "$netmask"
+	fi
+else
+	netmask=`ifconfig -a | grep netmask | awk '{print $4}'`
+	echo "$netmask"
+fi
+;;
+esac
